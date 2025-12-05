@@ -1,8 +1,21 @@
+# ---------- 1. Build Stage ----------
+FROM maven:3.9.6-eclipse-temurin-21 AS build
+WORKDIR /app
+
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+
+# ---------- 2. Run Stage ----------
 FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY target/firstSpringApp-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
