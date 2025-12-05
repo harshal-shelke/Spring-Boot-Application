@@ -4,14 +4,7 @@ spring:
 #    port: 6379
   data:
     redis:
-      url: redis://default:g2AXxCTxIw00zHm9UeGyjTlPGSrSukkj@redis-15187.crce182.ap-south-1-1.ec2.cloud.redislabs.com:15187
-#      host: redis-15187.crce182.ap-south-1-1.ec2.cloud.redislabs.com
-#      port: 15187
-#      username: default
-#      password: g2AXxCTxIw00zHm9UeGyjTlPGSrSukkj
-#      ssl:
-#        enabled: true
-#      timeout: 2000
+      url: ${REDIS_URL}
 
   profiles:
     active: dev
@@ -19,8 +12,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: harshalshelke94@gmail.com
-    password: cakk zonk lior agtl
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -30,4 +23,4 @@ spring:
 
 weather:
   api:
-    key: "rbmvcWfFV9y73zrNFAnzaA==LE64pMS1LBIDsdsm"
+    key: ${WEATHER_API_KEY}
